@@ -1,8 +1,11 @@
 <title>CPros | Favorite</title>
-<h1>Follow Players</h1>
+<h1>Follow Players from <%= @user.school %></h1>
 
 
 <!-- sort players by fantasy projected points for the season or next week -->
 <% @players.each do |player| %>
-  <li><%= player.name %></li>
+  <li><%= player.position %></li>
+  <li><%= player.team%></li>
+  <li><%= player.name %></li><br/>
+
 <% end %>

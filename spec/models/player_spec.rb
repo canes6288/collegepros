@@ -1,5 +1,14 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe Player, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Player do
+  let(:user) { FactoryGirl.create(:user) }
+
+  it { should respond_to(:name) }
+  it { should respond_to(:last_name) }
+  it { should respond_to(:first_name) }
+  it { should respond_to(:team) }
+  it { should respond_to(:position) }
+  it { should respond_to(:school) }
+  it { should respond_to(:nerd_id) }
+  it { should be_valid }
 end

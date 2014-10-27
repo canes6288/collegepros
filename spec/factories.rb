@@ -20,5 +20,6 @@ FactoryGirl.define do
     email                 "joshkushner1@gmail.com"
     password              "foobar"
     password_confirmation "foobar"
+    school                "Miami (Fla.)"
   end
 end

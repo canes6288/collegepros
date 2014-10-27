@@ -21,15 +21,18 @@
   <br/>
 
   <div>
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
+    <%= form.label :password_confirmation, "Password Confirmation" %>
+    <%= form.password_field :password_confirmation%>
   </div>
   <br/>
 
+
+
   <div>
-    <%= form.label :pick_your_school %>
-    <%= select_tag "school", options_for_select(@school_options) %>
+    <%= form.label :school, "Pick Your School"%>
+    <%= form.select(:school, options_for_select(@school_options)) %>
   </div>
+
   <br/>
 
   <div>

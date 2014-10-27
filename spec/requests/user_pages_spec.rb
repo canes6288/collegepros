@@ -4,13 +4,21 @@ describe "users" do
 
   subject { page }
 
+  describe "dashboard page GET /dashboard" do
+    before { visit dashboard_path }
+
+    it { should have_title("CPros | Dashboard") }
+    it { shoudl have_selector('h1', text: "Dashboard") }
+  end
+
   describe "signup page GET /signup" do
     before { visit signup_path }
 
     it { should have_title("CPros | Sign Up") }
     it { should have_selector('h1', text: "Sign Up") }
-    it { should have_field("Password confirmation") }
+    it { should have_field("Password Confirmation") }
     it { should have_field("Name") }
+    it { should have_field("Password") }
 
     describe "signup POST /users" do
       let(:submit) { "Done" }
@@ -18,31 +26,28 @@ describe "users" do
       context "valid information" do
         before do
           User.destroy_all
-          fill_in "Name",      with: "Gerry"
-          fill_in "Email",     with: "rgpass@gmail.com"
-          fill_in "Password",  with: "foobar"
-          fill_in "Password confirmation", with: "foobar"
+          fill_in "Name",                  with: "Gerry"
+          fill_in "Email",                 with: "rgpass@gmail.com"
+          fill_in "Password",              with: "foobar"
+          fill_in "Password Confirmation", with: "foobar"
+          # select "Air Force",      from: "Pick Your School"
+          select('Alabama', :from => 'Pick Your School')
         end
 
         it "creates user" do
           expect { click_button submit }.to change(User, :count).by(1)
         end
 
-        # describe "after submission" do
-        #   before { click_button submit }
+        describe "after submission" do
+          before { click_button submit }
 
-        #   it { should have_title("CPros | Dashboard") } # forwards to players#show
-        #   it { should have_selector('h1', text: "Dashboard") }
-        # end
+          it { should have_title("CPros | Favorite") } # forwards to dashboard
+        end
       end
     end
   end
 end
 
-#       context "invalid information" do
-#         it "does not create task" do
-#           expect { click_button submit }.not_to change(User, :count)
-#         end
 
 #         describe "after submission" do
 #           before { click_button submit }
@@ -54,15 +59,4 @@ end
 #     end
 #   end
 
-#   describe "show page GET /users/:id" do
-#     before do
-#       User.destroy_all
-#       user = FactoryGirl.create(:user, name: "Gerry", email: "g@p.com")
-#       visit user_path(user.id)
-#     end
 
-#     it { should have_title("Todo | Gerry") }
-#     it { should have_selector('h1', text: "Gerry") }
-#     it { should have_selector('p', text: "Email: g@p.com")}
-#   end
-# end
