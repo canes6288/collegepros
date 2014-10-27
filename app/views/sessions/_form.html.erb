@@ -1,0 +1,19 @@
+<%= form_for(:session, url: home_path) do |form| %>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <br/>
+
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <br/>
+
+<%= button_tag(type: 'submit', class: "btn btn-primary sign_in_button") do %>
+    <i class="icon-ok icon-white"></i> Sign In
+  <% end %>
+
+<% end %>
