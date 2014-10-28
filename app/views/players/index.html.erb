@@ -6,6 +6,7 @@
 <% @players.each do |player| %>
   <li><%= player.position %></li>
   <li><%= player.team%></li>
-  <li><%= player.name %></li><br/>
+  <li><%= player.name %></li>
+  <%= render 'players/form' %>
 
 <% end %>

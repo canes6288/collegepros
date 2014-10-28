@@ -8,7 +8,7 @@ describe "users" do
     before { visit dashboard_path }
 
     it { should have_title("CPros | Dashboard") }
-    it { shoudl have_selector('h1', text: "Dashboard") }
+    it { should have_selector('h1', text: "Dashboard") }
   end
 
   describe "signup page GET /signup" do
@@ -31,7 +31,6 @@ describe "users" do
           fill_in "Password",              with: "foobar"
           fill_in "Password Confirmation", with: "foobar"
           # select "Air Force",      from: "Pick Your School"
-          select('Alabama', :from => 'Pick Your School')
         end
 
         it "creates user" do

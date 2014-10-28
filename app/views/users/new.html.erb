@@ -1,5 +1,46 @@
-<title>CPros | Sign Up</title>
-<h1>Sign Up</h1>
+<head>
+  <style>
+  .sign_up_box {
+    width: 500px;
+    height: 500px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .label_input {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 350px;
+    text-align: right;
+  }
+
+  .sign_up_text {
+    padding-bottom: 30px;
+    font-size: 63px;
+  }
+
+  .done_button {
+    width: 90px;
+    height: 40px;
+    font-size: 14px;
+    font-family: inherit;
+    margin-right: 81px;
+  }
+  </style>
+</head>
 
 
-<%= render 'users/form' %>
+<body>
+  <title>CPros | Sign Up</title>
+
+  <div class="sign_up_box jumbotron">
+    <div class ="sign_up_text"
+      <h1>Sign Up</h1>
+    </div>
+    <div class="label_input">
+      <%= render 'users/form' %>
+    </div>
+
+  </div>
+</body>
