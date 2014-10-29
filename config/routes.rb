@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   match '/', to: 'static_pages#home', via: 'get'
 
   match '/signup', to: 'users#new', via: 'get'
-  match '/home', to: 'sessions#new', via: 'post'
+  match '/home', to: 'sessions#create', via: 'post'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   match '/dashboard', to: 'players#dashboard', via: 'get'
