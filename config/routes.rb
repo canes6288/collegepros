@@ -2,11 +2,10 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-  match '/home', to: 'static_pages#home', via: 'get'
+  match '/', to: 'static_pages#home', via: 'get'
 
   match '/signup', to: 'users#new', via: 'get'
-
-  match '/signin', to: 'sessions#new', via: 'get'
+  match '/home', to: 'sessions#new', via: 'post'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   match '/dashboard', to: 'players#dashboard', via: 'get'
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
                       #    controller#view/controller_action
   # match '/dashboard', to: 'players#create', via: 'get'
 
-  resources :sessions, only: [:create, :destroy, :new]
+  resources :sessions, only: [:create, :destroy]
   resources :users, only: [:create]
   resources :players, only: [:index, :create]
   resources :favorites, only: [:create, :new, :index]

@@ -21,26 +21,18 @@ class Player < ActiveRecord::Base
   end
 
   def self.update_predicted_points
-    predicted_points_QB = HTTParty.get('http://www.fantasyfootballnerd.com/service/weekly-rankings/json/mv96pra5v766/QB')
-    predicted_points_RB = HTTParty.get('http://www.fantasyfootballnerd.com/service/weekly-rankings/json/mv96pra5v766/RB')
-    predicted_points_WR = HTTParty.get('http://www.fantasyfootballnerd.com/service/weekly-rankings/json/mv96pra5v766/WR')
-    predicted_points_TE = HTTParty.get('http://www.fantasyfootballnerd.com/service/weekly-rankings/json/mv96pra5v766/TE')
+    positions = ["QB","RB","WR","TE", "K"]
 
-    predicted_points_QB[ranking].each do |ranking|
-      ranking.update(
-        predicted_points: ranking["standard"])
-    end
-  end
+    positions.each do |position|
+      response = HTTParty.get("http://www.fantasyfootballnerd.com/service/weekly-rankings/json/mv96pra5v766/#{position}")
+      rankings = response["Rankings"]
 
-  def self.update_predicted_points_QB
-    response = HTTParty.get('http://www.fantasyfootballnerd.com/service/weekly-rankings/json/mv96pra5v766/QB')
-    rankings = response["Rankings"]
-    rankings.each do |player|
-      nerd_id = player["playerId"]
-      found_player = Player.find_by(nerd_id: nerd_id)
-      points = player["standard"]
-
-      found_player.update(predicted_points: points)
+      rankings.each do |player|
+        nerd_id = player["playerId"]
+        found_player = Player.find_by(nerd_id: nerd_id)
+        points = player["standard"]
+        found_player.update(predicted_points: points)
+      end
     end
   end
 
