@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_back_or(dashboard_path(user))
     else
-      render '/signup'
+      flash[:danger] = "Sorry! Try signing in again!"
+      redirect_to root_path
     end
   end
 

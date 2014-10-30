@@ -16,7 +16,7 @@ describe "users" do
 
     it { should have_title("CPros | Sign Up") }
     it { should have_selector('h1', text: "Sign Up") }
-    it { should have_field("Password Confirmation") }
+    it { should have_field("Confirmation") }
     it { should have_field("Name") }
     it { should have_field("Password") }
 
@@ -29,8 +29,8 @@ describe "users" do
           fill_in "Name",                  with: "Gerry"
           fill_in "Email",                 with: "rgpass@gmail.com"
           fill_in "Password",              with: "foobar"
-          fill_in "Password Confirmation", with: "foobar"
-          # select "Air Force",      from: "Pick Your School"
+          fill_in "Confirmation",          with: "foobar"
+          fill_in "Phone Number",          with: "9999999999"
         end
 
         it "creates user" do
@@ -40,7 +40,7 @@ describe "users" do
         describe "after submission" do
           before { click_button submit }
 
-          it { should have_title("CPros | Favorite") } # forwards to dashboard
+          it { should have_title("CPros | Players") }
         end
       end
     end

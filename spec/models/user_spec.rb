@@ -2,17 +2,20 @@ require 'spec_helper'
 
 describe User do
   before { @user = User.new(name: "Josh Kushner", email: "joshkushner1@gmail.com",
-                            password: "foobar", password_confirmation: "foobar") }
+                            password: "foobar", password_confirmation: "foobar",
+                            phone: "9999999999") }
 
   subject { @user }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:password) }
+  it { should respond_to(:phone) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
+
 
   it { should be_valid }
 

@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Collegepros</title>
+  <link href='http://fonts.googleapis.com/css?family=Graduate' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -12,7 +13,10 @@
   </div>
 
   <div class="container-fluid">
-  <%= yield %>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "alert alert-#{key} no-margin") %>
+    <% end %>
+    <%= yield %>
   </div>
 
 </body>

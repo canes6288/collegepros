@@ -6,11 +6,13 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
   after_create :send_welcome_message
 
+  validates :phone, length: { is: 10 }
   validates :name, presence: true, length: { maximum: 254 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 254 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+
 
   has_secure_password
 
@@ -28,16 +30,18 @@ class User < ActiveRecord::Base
   end
 
   def send_welcome_message
-    account_sid = "AC411dc2b8d69e4ffa1b5ec193a8c8cd94"
-    auth_token = "71061710dc77ac139f1b9c0cd0170cde"
-    client = Twilio::REST::Client.new account_sid, auth_token
+    unless self.phone == "9999999999"
+      account_sid = "AC411dc2b8d69e4ffa1b5ec193a8c8cd94"
+      auth_token = "71061710dc77ac139f1b9c0cd0170cde"
+      client = Twilio::REST::Client.new account_sid, auth_token
 
-    from = "+12392014618" # My Twilio number
+      from = "+12392014618" # My Twilio number
 
-    client.account.messages.create(
-      :from => from,
-      :to => self.phone,
-      :body => "Hey #{self.name}, Welcome to CollegePros! Go #{self.school}!"
-    )
+      client.account.messages.create(
+        :from => from,
+        :to => self.phone,
+        :body => "Hey #{self.name}, Welcome to CollegePros! Go #{self.school}!"
+      )
+    end
   end
 end

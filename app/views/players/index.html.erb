@@ -1,24 +1,33 @@
-<title>CPros | Favorite</title>
+<title>CPros | Players</title>
 <h1>Follow Players from <%= @user.school %></h1>
 
-<%= form_for(players_path(@user)) do |form| %>
+<%= form_for(player_path(@user)) do |form| %>
 
   <!-- sort players by fantasy projected points for the season or next week -->
-  <% @players.each do |player| %>
-    <div>
-      <%= check_box_tag 'favorites[player_nerd_ids][]', player.nerd_id, @user.players.include?(player) %>
-      <%= label_tag(:favorite, "Favorite") %>
-    </div>
-
-    <li>Name: <%= player.name %></li>
-    <li>Position: <%= player.position %></li>
-    <li>NFL Team: <%= player.team%></li>
-    </br>
+  <div class = "player-table">
+    <table class="table table-striped info">
+      <tr>
+        <th>Follow</th>
+        <th>Player</th>
+        <th>Team</th>
+        <th>Position</th>
+      </tr>
+    <% @players.each do |player| %>
+      <tr>
+        <td>
+          <%= check_box_tag 'favorites[player_nerd_ids][]', player.nerd_id, @user.players.include?(player) %>
+          <%= label_tag(:favorite, "Favorite") %>
+        </td>
+        <td><%= player.name %></td>
+        <td><%= player.team%></td>
+        <td><%= player.position %></td>
+      </tr>
+    <% end %>
+    </table>
   <% end %>
 
-  <%= button_tag(type: 'submit', class: "btn btn-primary done_button") do %>
-    <i class="icon-ok icon-white"></i> Done
-  <% end %>
+<%= button_tag(type: 'submit', class: "btn btn-primary done_button") do %>
+  <i class="icon-ok icon-white"></i> Done
 <% end %>
 
 </br>

@@ -11,9 +11,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in(@user)
+      flash[:success] = "All signed up!  Go ahead and select the players you want to follow!"
       redirect_back_or players_path
     else
-      render 'static_pages/home'
+      flash[:danger] = "Please make sure you fill in all sign up fields!"
+      render 'new'
     end
   end
 
