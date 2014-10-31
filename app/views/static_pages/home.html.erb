@@ -3,17 +3,21 @@
 </div>
 
 <title>CPros | Home</title>
-<div class="welcome_text jumbotron">
-  <h1><span class = "welcome_header">Welcome to CollegePros</span></h1>
-  <p>Follow your favorite college football stars in the pros.  See their stats for the current season and where they rank at their position amongst current NFL players.</p>
-</div>
-
-<div class="sign_in_box jumbotron">
-  <p>Sign In</p>
-  <div class="label_input">
-    <%= render 'sessions/form' %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="welcome_text jumbotron hidden-xs col-sm-6 col-md-6 col-lg-8">
+      <h1><span class = "welcome_header">Welcome to CollegePros</span></h1>
+      <p>Follow your favorite college football stars in the pros.  See their stats for the current season and where they rank at their position amongst current NFL players.</p>
+    </div>
+    <div class="sign_in_box jumbotron col-xs-12 col-sm-2 col-md-2 col-lg-2">
+      <p>Sign In</p>
+      <div class="label_input">
+        <%= render 'sessions/form' %>
+      </div>
+      <p>_______________________</p>
+      <p>Don't have an account?</p>
+      <a class="btn btn-primary btn-lg sign_up_button" role="button" href="/signup">Sign Up</a></br>
+    </div>
+    </div>
   </div>
-  <p>_______________________</p>
-  <p>Don't have an account?</p>
-  <a class="btn btn-primary btn-lg sign_up_button" role="button" href="/signup">Sign Up</a></br>
-</div>
+

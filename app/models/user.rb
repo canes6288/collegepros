@@ -6,12 +6,17 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
   after_create :send_welcome_message
 
+  reserved_words = "--"
+
   validates :phone, length: { is: 10 }
   validates :name, presence: true, length: { maximum: 254 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 254 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validates :school, presence: true
+  validates :password, presence: true, length: { minimum: 6 }
+
 
 
   has_secure_password

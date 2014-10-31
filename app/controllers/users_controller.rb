@@ -5,16 +5,18 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @school_options = Player.school_names.sort
+    @school_options.shift
   end
 
   def create
     @user = User.new(user_params)
+    @school_options = Player.school_names.sort
+    @school_options.shift
     if @user.save
       sign_in(@user)
       flash[:success] = "All signed up!  Go ahead and select the players you want to follow!"
       redirect_back_or players_path
     else
-      flash[:danger] = "Please make sure you fill in all sign up fields!"
       render 'new'
     end
   end

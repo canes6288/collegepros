@@ -1,14 +1,14 @@
-<%= form_for(:session, url: sessions_path) do |form| %>
+<%= form_for(:session, url: sessions_path) do |f| %>
 
   <div>
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
   </div>
   <br/>
 
   <div>
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
   </div>
   <br/>
 
